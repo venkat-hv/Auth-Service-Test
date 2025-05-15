@@ -1,3 +1,6 @@
+const jwt = require("jsonwebtoken");
+const JWT_SECRET = process.env.JWT_SECRET
+
 async function getSessionUser(req, res) {
   try {
     const token = req.cookies["auth_token"];
@@ -7,6 +10,7 @@ async function getSessionUser(req, res) {
       const user = jwt.verify(token, JWT_SECRET);
       res.status(200).json({ user });
     } catch (err) {
+      console.log("Token Expired / Invalid Token: ", token);
       res.status(401).json({ error: "Invalid token" });
     }
   } catch (error) {
