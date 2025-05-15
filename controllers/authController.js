@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const passport = require("../passport");
 
 // Config
 const NODE_ENV = process.env.NODE_ENV;
