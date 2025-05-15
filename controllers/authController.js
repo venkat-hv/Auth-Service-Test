@@ -45,6 +45,8 @@ async function handleGoogleAuthCallback(req, res) {
     console.log('in handleGoogleAuthCallback')
     // Successful login, issue our own JWT
     const token = jwt.sign(req.user, JWT_SECRET, { expiresIn: TOKEN_EXPIRY });
+    console.log('cookieOptions: ', cookieOptions)
+    console.log('token: ', token)
     res.cookie("auth_token", token, cookieOptions);
     const redirect = decodeURIComponent(req.query.state);
 
