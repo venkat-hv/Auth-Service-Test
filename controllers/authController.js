@@ -47,10 +47,10 @@ async function handleGoogleAuthCallback(req, res) {
     const token = jwt.sign(req.user, JWT_SECRET, { expiresIn: TOKEN_EXPIRY });
     console.log('cookieOptions: ', cookieOptions)
     console.log('token: ', token)
-    res.cookie("auth_token", token, cookieOptions);
+    // res.cookie("auth_token", token, cookieOptions);
     const redirect = decodeURIComponent(req.query.state);
 
-    return res.redirect(redirect);
+    return res.redirect(`${redirect}?token=${token}`);
   } catch (error) {
     console.error("ERROR in handleGoogleAuthCallback: ", error);
     return res.status(500).json({ message: error.message });
