@@ -1,4 +1,6 @@
 /node_modules
 package-lock.json
+
 .env.staging
 .env.production
+.env
