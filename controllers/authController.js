@@ -18,6 +18,7 @@ const cookieOptions = {
 
 async function handleGoogleAuth(req, res, next) {
   try {
+    console.log('in handleGoogleAuth')
     const redirect = req.query.redirect;
     if (
       !redirect ||
@@ -41,6 +42,7 @@ async function handleGoogleAuth(req, res, next) {
 
 async function handleGoogleAuthCallback(req, res) {
   try {
+    console.log('in handleGoogleAuthCallback')
     // Successful login, issue our own JWT
     const token = jwt.sign(req.user, JWT_SECRET, { expiresIn: TOKEN_EXPIRY });
     res.cookie("auth_token", token, cookieOptions);
