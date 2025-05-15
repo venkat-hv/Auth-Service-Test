@@ -12,7 +12,7 @@ const cookieOptions = {
   httpOnly: true, // for security (prevents client-side js to access cookie)
   secure: NODE_ENV === "production" ? true : false, // for https
   sameSite: NODE_ENV === "production" ? "None" : "Lax", // for cross-site requests
-  domain: DOMAIN, // cookie is accessible throughout this domain
+  // domain: DOMAIN, // cookie is accessible throughout this domain
   maxAge: 60 * 60 * 1000, // 1 hour
 };
 
@@ -63,7 +63,8 @@ async function handleLogout(req, res) {
       return res.status(400).json({ error: "redirect is required" });
     }
 
-    res.clearCookie("auth_token", { domain: DOMAIN });
+    // res.clearCookie("auth_token", { domain: DOMAIN });
+    res.clearCookie("auth_token");
     const redirect = req.query.redirect;
     return res.redirect(redirect);
   } catch (error) {
